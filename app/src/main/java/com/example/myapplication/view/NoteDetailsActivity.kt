@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.view
 
 import android.app.Activity
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.activity_add_note.*
 
 class NoteDetailsActivity : AppCompatActivity() {

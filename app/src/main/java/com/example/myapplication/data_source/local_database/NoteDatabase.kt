@@ -1,8 +1,7 @@
-package com.example.myapplication
+package com.example.myapplication.data_source.local_database
 
 import android.content.Context
 import androidx.room.*
-import androidx.sqlite.db.SupportSQLiteOpenHelper
 import com.example.myapplication.model.Note
 
 @Database(entities = arrayOf(Note::class), version = 1)

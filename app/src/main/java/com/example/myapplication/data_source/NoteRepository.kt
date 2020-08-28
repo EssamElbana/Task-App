@@ -1,7 +1,8 @@
-package com.example.myapplication
+package com.example.myapplication.data_source
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import com.example.myapplication.data_source.local_database.NoteDatabase
 import com.example.myapplication.model.Note
 
 class NoteRepository(application: Application) {

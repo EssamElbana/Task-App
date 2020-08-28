@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NoteDetailsActivity"
-            android:parentActivityName=".NoteListActivity" />
-        <activity android:name=".NoteListActivity">
+            android:name=".view.NoteDetailsActivity"
+            android:parentActivityName=".view.NoteListActivity" />
+        <activity android:name=".view.NoteListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

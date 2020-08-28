@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.view
 
 import android.app.Activity
 import android.content.Intent
@@ -12,14 +12,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.model.Note
 import kotlinx.android.synthetic.main.activity_main.*
 
-const val ADD_NOTE_REQUEST_CODE = 0
-const val EDIT_NOTE_REQUEST_CODE = 1
 
 class NoteListActivity : AppCompatActivity() {
-
+    companion object {
+        const val ADD_NOTE_REQUEST_CODE = 0
+        const val EDIT_NOTE_REQUEST_CODE = 1
+    }
     private lateinit var noteViewModel: NoteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,13 +32,13 @@ class NoteListActivity : AppCompatActivity() {
         recycler_view.setHasFixedSize(true)
         val noteAdapter = NoteAdapter(object: NoteAdapter.ItemSelectedInterface{
             override fun onItemSelected(note: Note) {
-                val intent = Intent(this@NoteListActivity,NoteDetailsActivity::class.java)
+                val intent = Intent(this@NoteListActivity, NoteDetailsActivity::class.java)
                 intent.putExtra("id",note.id)
                 intent.putExtra("description",note.description)
                 intent.putExtra("title",note.title)
                 intent.putExtra("priority",note.priority)
 
-                startActivityForResult(intent,EDIT_NOTE_REQUEST_CODE)
+                startActivityForResult(intent, EDIT_NOTE_REQUEST_CODE)
             }
         })
         recycler_view.adapter = noteAdapter
