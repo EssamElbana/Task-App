@@ -8,16 +8,16 @@ import com.example.myapplication.model.Note
 interface NoteDao {
 
     @Insert
-    fun insert(note: Note)
+    suspend fun insert(note: Note)
 
     @Update
-    fun update(note: Note)
+    suspend fun update(note: Note)
 
     @Delete
-    fun delete(note: Note)
+    suspend fun delete(note: Note)
 
     @Query("Delete From note_table")
-    fun deleteAllNotes()
+    suspend fun deleteAllNotes()
 
     @Query("SELECT * From note_table ORDER BY priority DESC")
     fun getAllNotes(): LiveData<List<Note>>

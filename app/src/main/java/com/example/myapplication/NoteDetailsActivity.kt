@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_add_note.*
 
-class AddNoteActivity : AppCompatActivity() {
+class NoteDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_note)
@@ -18,7 +18,13 @@ class AddNoteActivity : AppCompatActivity() {
         number_picker_priority.maxValue = 10
 
         actionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
-        title = "Add Note"
+        if (intent.hasExtra("id")) {
+            title = "Edit Note"
+            edit_text_title.setText(intent.getStringExtra("title"))
+            edit_text_description.setText(intent.getStringExtra("description"))
+            number_picker_priority.value = intent.getIntExtra("priority",1)
+        } else
+            title = "Add Note"
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -27,12 +33,12 @@ class AddNoteActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.save_note -> {
                 saveNote()
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -53,6 +59,8 @@ class AddNoteActivity : AppCompatActivity() {
         data.putExtra("title", title)
         data.putExtra("description", description)
         data.putExtra("priority", priority)
+        if(intent.hasExtra("id"))
+            data.putExtra("id",intent.getIntExtra("id",-1))
         setResult(Activity.RESULT_OK, data)
         finish()
     }
